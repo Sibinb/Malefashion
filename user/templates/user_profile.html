@@ -1,0 +1,45 @@
+{% extends 'html.html' %}
+{% block content %}
+{% load static %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img width="150px" height="150px"  src="media/{{user.profile_pic}}" alt="upload profile pic" style="border-radius:100px ;" > <button type="button" onclick="image()" class="btn"><i class="fa fa-plus-square" style="font-size:20px;"></i></button><span class="font-weight-bold">{{user.Name}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <form action="/" id="save-form">
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" name="name" class="form-control" placeholder="first name" value="{{user.Name}}"></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" name="username" class="form-control" value="{{user.username}}" placeholder="surname"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Mobile Number</label><input  type="number" name="mobile" class="form-control" placeholder="enter phone number" value="{{user.mobileno}}"></div>
+                    <div id="show" class="col-md-12"></div>
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="email" name="email" class="form-control" placeholder="enter email id" value="{{user.email}}"></div>
+                    <div id="image" class="col-md-12"></div>
+                    <button id="confirm-btn" class="btn btn-success confirm-cls">Confirm</button>
+                    <div id="alert-box"></div>
+                    <div id="image-box" class="mb-3"></div>
+                </div>
+                <div class="mt-5 text-center"><button id="s" class="btn btn-primary profile-button" >Save Profile</button></div>
+            </form>
+            </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="{% static 'save.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body  onload="myFunction()">  
+    
+  <script>
+    function myFunction(){
+        Swal.fire({
+            position: 'Center',
+            icon: 'success',
+            title: 'Your Oders was placed.',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          const myTimeout = setTimeout(A, 1500);
+        
+    }
+
+    function A(){
+        location.href="oders";
+    }
+    
+  </script>
+</body>
+</html>

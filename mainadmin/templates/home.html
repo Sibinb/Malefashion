@@ -1,0 +1,144 @@
+{% extends 'admin_html.html' %}
+       {% block navbar %}
+       <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+        <div class="position-fixed">
+          <div class="list-group list-group-flush mx-3  w-45" style="margin-top: 42px;" >
+            <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple mt-3 active " style="text-decoration:none ;" aria-current="true">
+              <i class="fa-sharp fa-solid fa-house"></i> <span >Dashboard</span>
+            </a>
+            <a href="users" class="list-group-item list-group-item-action py-2 ripple  mt-3  ">
+              <i class="fa-sharp fa-solid fa-user"></i> <span >Users</span>
+            </a>
+            <a href="product" class="list-group-item list-group-item-action py-2 ripple mt-3 ">
+              <i class="fa-solid  fa-cart-shopping"></i> <span>Products</span></a>
+              <a href="oders" class="list-group-item list-group-item-action py-2 ripple mt-3">
+                <i class="fa-solid fa-bolt"></i> <span>Oders</span></a>
+                <a href="coupon!0" class="list-group-item list-group-item-action py-2 ripple mt-3">
+                  <i class="fa-solid fa-bolt"></i> <span>Coupon</span></a>
+          </div>
+        </div>
+      </nav>
+       {% endblock navbar %}
+        {% block content %}
+        <section id="main" class="w-75" >
+          <div class="container shadow-lg rounded mb-5 mt-5">
+            <div class="container">
+              <div class="row d-flex">
+                <div class="d-flex justify-content-evenly ">
+                  <div class="row">
+                  {% comment %} <div
+                    class="text-dark  mt-5 mb-3 p-5 bg-opacity-25 shadow card-work col-md-4 col-12 "
+                    id="card-div">
+                    <div>
+                      <p>Total</p>
+                      <p id="con-text" class="text-center" >
+                        {{sum}}
+                      </p>
+                    </div>
+                  </div> {% endcomment %}
+                  <div class="card mt-3 " style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title h4 text-center">Total Revenue</h5>
+                      <p class="card-text h3 text-center mt-5 ">{{sum}}</p>
+                    </div>
+                  </div>
+                  <div class="card mt-3 " style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title h4 text-center">Total Orders</h5>
+                      <p class="card-text h3 text-center mt-5">{{tot_ord}}</p>
+                    </div>
+                  </div>
+                  <div class="card mt-3 " style="width: 18rem; height: 10rem;">
+                    <div class="card-body">
+                      <h5 class="card-title h4 text-center">Total Users</h5>
+                      <p class="card-text h3 text-center mt-5"> {{tot_usr}}</p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+              <div class="row p-5 text-center">
+                <div class="col-12 col-md-5 card  card-work chart-show">
+                  <div class="card-body">
+                    <p class="p-2" style="color: rgb(255, 99, 132)">Orders /day</p>
+                    <canvas id="userChart"></canvas>
+                  </div>
+                </div>
+                <div class="col-12 col-md-5  card card-work">
+                  <div class="card-body">
+                    <p class="p-2" style="color: rgb(255, 99, 132)">Top Sellers</p>
+                    <canvas id="salesChart"></canvas>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </section>
+        <script>
+          // user datas
+          const orderData = {
+            labels: [
+            {% for x  in date  %}
+            "{{x}}",
+            {% endfor %}
+            ],
+            datasets: [
+              {
+                label: "Orders",
+                backgroundColor: "rgb(255, 99, 132)",
+                borderColor: "rgb(255, 99, 132)",
+                data: [
+                {% for x  in data.values  %}
+                  "{{x}}",
+                {% endfor %}
+                ],
+              },
+            ],
+          };
+        
+          const configLineGraph = {
+            type: "line",
+            data: orderData,
+            options: {},
+          };
+        
+          const userChart = new Chart(
+            document.getElementById("userChart"),
+            configLineGraph
+          );
+        
+          //top5Products
+          const salesData = {
+            labels: [
+              "Shirts",
+              "saree",
+              "T-shirt",
+            ],
+            datasets: [
+              {
+                label: "Sales in last month",
+                data: [
+                  "40",
+                  "200",
+                  "98",
+                ],
+                backgroundColor: [
+                  "rgb(255, 99, 132)",
+                  "rgb(54, 162, 235)",
+                  "rgb(255, 205, 86)",
+                ],
+                hoverOffset: 4,
+              },
+            ],
+          };
+        
+          const configDoughnut = {
+            type: "doughnut",
+            data: salesData,
+          };
+          const salesChart = new Chart(
+            document.getElementById("salesChart"),
+            configDoughnut
+          );
+        </script>
+        {% endblock content %}

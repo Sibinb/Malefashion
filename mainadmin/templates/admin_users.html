@@ -1,0 +1,57 @@
+{% extends 'admin_html.html' %}
+  {% block navbar %}
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-fixed">
+      <div class="list-group list-group-flush mx-3  w-45" >
+        <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple mt-3  " style="text-decoration:none ;" aria-current="true">
+          <i class="fa-sharp fa-solid fa-house"></i> <span >Dashboard</span>
+        </a>
+        <a href="users" class="list-group-item list-group-item-action py-2 ripple  mt-3 active ">
+          <i class="fa-sharp fa-solid fa-user"></i> <span >Users</span>
+        </a>
+        <a href="product" class="list-group-item list-group-item-action py-2 ripple mt-3 ">
+          <i class="fa-solid  fa-cart-shopping"></i> <span>Products</span></a>
+          <a href="oders" class="list-group-item list-group-item-action py-2 ripple mt-3">
+            <i class="fa-solid fa-bolt"></i> <span>Oders</span></a>
+            <a href="coupon!0" class="list-group-item list-group-item-action py-2 ripple mt-3">
+              <i class="fa-solid fa-bolt"></i> <span>Coupon</span></a>
+      </div>
+    </div>
+  </nav>
+  {% endblock navbar  %}
+        {% block content %}
+        <main id="main"  class="w-75" >
+          <div class="container pt-4 text-info">
+            <h3 style="margin: 10px 0px 30px 40px;">Users Info</h3>
+          </div>
+          <table id="example" class="display border boder-info" style="width:100%">
+            <thead class="text-info">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phonenumber</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users  %}
+              <tr >
+                <th  scope="row">{{user.id}}</th>
+                <td >{{user.Name}}</td>
+                <td>{{user.username}}</td>
+                <td >{{user.email}}</td>
+                <td>{{user.mobileno}}</td>
+                {% if user.isblocked %}
+                <td ><a onclick="unblock({{user.id}})"><button class="btn btn-success h-10">unblock</button></a></td>
+                {% else %}
+                <td ><a onclick="block({{user.id}})"><button class="btn btn-danger h-10">Block</button></a></td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </main>
+
+        {% endblock content %}

@@ -1,0 +1,90 @@
+{% extends 'admin_html.html' %}
+{% block navbar %}
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-fixed">
+      <div class="list-group list-group-flush mx-3 w-45" style="margin-top: 42px;">
+        <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple mt-3" style="text-decoration:none ;" aria-current="true"><i class="fa-sharp fa-solid fa-house"></i> <span>Dashboard</span></a>
+        <a href="users" class="list-group-item list-group-item-action py-2 ripple mt-3"><i class="fa-sharp fa-solid fa-user"></i> <span>Users</span></a>
+        <a href="product" class="list-group-item list-group-item-action py-2 ripple mt-3"><i class="fa-solid fa-cart-shopping"></i> <span>Products</span></a>
+        <a href="oders" class="list-group-item list-group-item-action py-2 ripple mt-3">
+          <i class="fa-solid fa-bolt"></i> <span>Oders</span></a>
+          <a href="coupon!0" class="list-group-item list-group-item-action py-2 ripple mt-3">
+            <i class="fa-solid fa-bolt"></i> <span>Coupon</span></a>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+{% block content %}
+  <main id="main"  class="w-85">
+    <div class="container pt-4 text-info d-flex justify-content-between">
+      <h3 style="margin: 10px 0px 30px 40px; color: chocolate;">ORDER DETAILS</h3>
+      <a href="oders"><button class="btn btn-dark">Orders</button></a>
+      <h1></h1>
+    </div>
+    <table class="display border border-dark p-5" style="width:65%">
+      <tbody>
+        <tr class="mb-3">
+          <td ><h5> &nbsp;&nbsp;&nbsp;Date</h5></td>
+          <td ><h3>:</h3></td>
+          <td ><h6></h6>{{orders.date}}</td>
+        </tr>
+          <tr class="mb-3">
+            <td ><h5> &nbsp;&nbsp;&nbsp;Order Id</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6></h6>{{orders.ord_id}}</td>
+          </tr>
+          <tr class="mb-3">
+            <td><h5> &nbsp;&nbsp;&nbsp;Name</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6>{{orders.address.Name}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td ><h5> &nbsp;&nbsp;&nbsp;Phone Number</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6>{{orders.address.mobileno}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td ><h5> &nbsp;&nbsp;&nbsp;Adress</h5></td>
+            <td><h3>:</h3></td>
+            <td ><h6>{{orders.address.Address}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td ><h5> &nbsp;&nbsp;&nbsp;State</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6>{{orders.address.State}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td ><h5> &nbsp;&nbsp;&nbsp;Product Name</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6>{{orders.order_prd_name}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td ><h5> &nbsp;&nbsp;&nbsp;Quantity</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6>{{orders.order_prd_quantity}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td><h5>&nbsp;&nbsp;&nbsp;Price</h5></td>
+            <td><h3>:</h3></td>
+            <td><h6>{{orders.order_prd_price}}/-Rs</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td><h5>&nbsp;&nbsp;&nbsp;Payment Method</h5></td>
+            <td><h3>:</h3></td>
+            <td><h6>{{orders.payment_method}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td ><h5>&nbsp;&nbsp;&nbsp;Status</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6>{{orders.status}}</h6></td>
+          </tr>
+          <tr class="mb-3">
+            <td ><h5>&nbsp;&nbsp;&nbsp;Payment Status</h5></td>
+            <td ><h3>:</h3></td>
+            <td ><h6>{{orders.payment_status}}</h6></td>
+          </tr>
+          
+      </tbody>
+    </table>
+  </main>
+{% endblock %}

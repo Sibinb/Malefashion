@@ -1,0 +1,72 @@
+{% extends 'admin_html.html' %}
+{% block navbar %}
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-fixed">
+      <div class="list-group list-group-flush mx-3 w-45" style="margin-top: 42px;">
+        <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple mt-3 active" style="text-decoration:none ;" aria-current="true"><i class="fa-sharp fa-solid fa-house"></i> <span>Dashboard</span></a>
+        <a href="users" class="list-group-item list-group-item-action py-2 ripple mt-3"><i class="fa-sharp fa-solid fa-user"></i> <span>Users</span></a>
+        <a href="product" class="list-group-item list-group-item-action py-2 ripple mt-3"><i class="fa-solid fa-cart-shopping"></i> <span>Products</span></a>
+        <a href="oders" class="list-group-item list-group-item-action py-2 ripple mt-3">
+          <i class="fa-solid fa-bolt"></i> <span>Oders</span></a>
+          <a href="coupon!0" class="list-group-item list-group-item-action py-2 ripple mt-3">
+            <i class="fa-solid fa-bolt"></i> <span>Coupon</span></a>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+{% block content %}
+  <section class="vh-100 mt-5">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h4 class="text-info">Create coupon</h4>
+              {% if cat %}
+              <form id="coupon-form" action="coupon!1" method="post">
+                {% else %}
+                <form id="coupon-form" action="coupon!0" method="post">
+                  {% endif %}
+                {% csrf_token %}
+                <div class="mb-3">
+                  <a href="coupon!0"><button type="button" class="btn btn-danger">Product</button></a> <a href="coupon!1"><button type="button" class=" btn btn-info">Category</button></a>
+                </div>
+                  <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Coupon name</label>
+                  <input name="name" type="text" class="form-control md-6"   />
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Offer</label>
+                  <input name="discount" type="number" class="form-control" id="exampleInputPassword1" />
+                </div>
+                {% if cat %}
+                <h6>Select Category</h6>
+                <div class="mb-3 ">
+                  <select name="Category" class="form-select text-secondary" aria-label="Default select example">
+                    {% for cat in Category  %}
+                    <option value="{{cat.pk}}">{{cat.category_name}}</option>
+                    {% endfor %}
+                    </select>
+                </div> 
+                
+                {% else %}
+                <h6>Select Product</h6>
+                
+                <div class="mb-3">
+                  <select name="product" class="form-select text-secondary" aria-label="Default select example">
+                    {% for product in products  %}
+                    <option value="{{product.pk}}">{{product.product_name}}</option>
+                    {% endfor %}
+                  </select>
+                </div> 
+                {% endif %}
+                <button type="button" onclick="create_coupon()" class="btn btn-info text-light">Create</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+{% endblock %}

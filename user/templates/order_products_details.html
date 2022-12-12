@@ -1,0 +1,200 @@
+{% extends 'html.html' %}
+{% block content %}
+
+{% load static %}
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Order Details</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>Order details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Shopping Cart Section Begin -->
+ <section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shopping__cart__table">
+                    <section class="h-100 h-custom" style="background-color: white;">
+                        <div class="container py-5 h-100">
+                          <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-lg-8 col-xl-6">
+                              <div class="card border-top border-bottom border-3" style="border-color:#f37a27!important;">
+                                <div class="card-body p-5">
+                                  <p class="lead fw-bold mb-5" style="color: #f37a27;">Purchase Reciept</p>
+                                  <div class="row">
+                                    <div class="col mb-3">
+                                      <p class="small text-muted mb-1">Date</p>
+                                      <p>{{od.date}}</p>
+                                    </div>
+                                    <div class="col mb-3">
+                                      <p class="small text-muted mb-1">Order No.</p>
+                                      <p>{{od.ord_id}}</p>
+                                    </div>
+                                  </div>
+                      
+                                  <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
+                                    <div class="row">
+                                      <div class="col-md-8 col-lg-9">
+                                        <p class="text-bold">{{od.order_prd_name}}</p>
+                                      </div>
+                                      <div class="col-md-4 col-lg-3">
+                                        <p>&#8377;{{price}}</p>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-8 col-lg-9">
+                                        <p class="text-bold">Quantity</p>
+                                      </div>
+                                      <div class="col-md-4 col-lg-3">
+                                        <p>{{od.order_prd_quantity}}</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                      
+                                  <div class="row my-4">
+                                    <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
+                                      <p class="lead fw-bold mb-0" style="color: #060606;">&#8377;{{od.order_prd_price}}</p>
+                                    </div>
+                                  </div>
+                      
+                                  <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;"> Details</p>
+                      
+                                  <table style="border-radius: 0px;" class="table text-bold border-none">
+                                    <tbody>
+                                      <tr>
+                                        <td><h5>Name : </h5></td>
+                                        <td>{{od.address.Name}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><h5>Adress : </h5></td>
+                                        <td>{{od.address.Address}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><h5>Mobile No : </h5></td>
+                                        <td>{{od.address.mobileno}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><h5>Postcode : </h5></td>
+                                        <td>{{od.address.Postcode}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><h5>State : </h5></td>
+                                        <td>{{od.address.State}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><h5>Payment Method : </h5></td>
+                                        <td>{{od.payment_method}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><h5>Status: </h5></td>
+                                        <td>{{od.status}}</td>
+                                      </tr><tr>
+                                        {% if od.status == "Placed" %}
+                                        <td><button onclick="cancelorder({{od.pk}})" class="btn btn-danger">  Cancel Order </button></td>
+                                        {% elif od.status == "Delivered" %}
+                                        <td><button onclick="returnorder({{od.pk}})" class="btn btn-success">  Return Product </button></td>
+                                        {% endif %}
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a href="shop">Continue Shopping</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="continue__btn update__btn">
+                          <a href="cart">Go to cart</a>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                    </div>
+                    <p>The customer is at the heart of our unique business model, which includes design.</p>
+                    <a href="#"><img src="img/payment.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Clothing Store</a></li>
+                        <li><a href="#">Trending Shoes</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Delivary</a></li>
+                        <li><a href="#">Return & Exchanges</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                <div class="footer__widget">
+                    <h6>NewLetter</h6>
+                    <div class="footer__newslatter">
+                        <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                        <form action="#">
+                            <input type="text" placeholder="Your email">
+                            <button type="submit"><span class="icon_mail_alt"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Search Begin -->
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
+    </div>
+</div>
+{% endblock content%}

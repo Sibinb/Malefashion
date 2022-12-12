@@ -1,0 +1,143 @@
+{% extends 'admin_html.html' %}
+       {% block navbar %}
+       <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+        <div class="position-fixed">
+          <div class="list-group list-group-flush mx-3  w-45" style="margin-top: 42px;" >
+            <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple mt-3 " style="text-decoration:none ;" aria-current="true">
+              <i class="fa-sharp fa-solid fa-house"></i> <span >Dashboard</span>
+            </a>
+            <a href="users" class="list-group-item list-group-item-action py-2 ripple  mt-3  ">
+              <i class="fa-sharp fa-solid fa-user"></i> <span >Users</span>
+            </a>
+            <a href="product" class="list-group-item list-group-item-action py-2 ripple mt-3 active  ">
+              <i class="fa-solid  fa-cart-shopping"></i> <span>Products</span></a>
+              <a href="oders" class="list-group-item list-group-item-action py-2 ripple mt-3">
+                <i class="fa-solid fa-bolt"></i> <span>Oders</span></a>
+                <a href="coupon!0" class="list-group-item list-group-item-action py-2 ripple mt-3">
+                  <i class="fa-solid fa-bolt"></i> <span>Coupon</span></a>
+          </div>
+        </div>
+      </nav>
+       {% endblock navbar %}
+       {% block content %}
+       <section class="vh-100 mt-5">
+           <div class="container py-5 h-100">
+             <div class="row d-flex justify-content-center align-items-center h-100">
+               <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                 <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                   <div class="card-body p-5 text-center">
+                     <h3 class="mb-5">Add Product</h3>
+                      <h5 style="color:black;">{{m}}</h5>
+                      {% if show %}
+                        <div class="form-outline mb-4">
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          <h5 class="h5">{{msg}}</h5>
+                        <input name="name" type="text" placeholder="Enter the brand" class="form-control form-control-md" required/>
+                        <button type="submit" class="btn btn-info">submit</button>
+                      </form>
+                      </div>
+                       {% else %} 
+                    <form action="" id="image-form" method="post" enctype="multipart/form-data">
+                     {% csrf_token %}
+                     <div class="form-outline mb-4">
+                       <input name="Product_Name" type="name" placeholder="Enter product name" id="typeEmailX-2" class="form-control form-control-md" required />
+                     </div>
+                     <div class="form-outline mb-4">
+                       <input name="Description" type="text" placeholder="Description" id="typeEmailX-2" class="form-control form-control-md" required />
+                     </div>
+                     <div class="form-outline mb-4">
+                       <input name="Product_Price" type="number" placeholder="Enter product Price" class="form-control form-control-md" required  />
+                     </div>
+                    <div class="form-outline mb-4">
+                    <label class="fw-bold">Choose the category:</label>  <a href="category_add"><i class="fa fa-plus"></i></a>
+                    <select onchange="da()" name="category" class="form-control form-control-md" id="cars">
+                      {% for item in categry %}
+                        <option value="{{item.pk}}">{{item.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                     </div>
+                     <div class="form-outline mb-4">
+                      <label class="fw-bold">Choose the sub-category:</label>
+                      <select  name="subcat" id="subcat" class="form-control form-control-md">
+                          <option id="opt1" value="Shirt">Shirt</option>
+                          <option id="opt2" value="pant">pants</option>
+                          <option id="opt3" value="T-shirt">T-shirt</option>
+                      </select>
+                       </div>
+                       <input name="stock" type="text" placeholder="enter the stock">
+                       <div class="form-outline mb-4 justify-content-end">
+                          <label class="fw-bold">Choose the Brand:</label>
+                        <select  name="brand"  class="form-control form-control-md">
+                          {% for  brand in brands  %}
+                            <option   value="{{brand.Name}}">{{brand.Name}}</option>
+                            {% endfor %}
+                        </select><button  style="height: 26px;padding: 0px 1px 0px 1px;" class="btn btn-light border border-dark mt-3"><a style="text-decoration:none ; color: black;" href="ad_brand">Add new brand</a> </button>
+                         </div>
+                          <button id="confirm-btn" class="btn btn-success confirm_cls">Confirm</button>
+                         <div id="alert-box"></div>
+                        <div id="image-box" class="mb-3"></div>
+                        <div id="img_div" class="" >
+                          <div class="form-outline mb-4">
+                            <label class="fw-bold " for="img">Select image1:</label>
+                            <input type="file" onchange="man(0)"  id="0"  accept="image/*" required>
+                            <label class="fw-bold"  for="img">Select image2:</label>
+                            <input type="file" id="1" onchange="man(1)"  accept="image/*" required>
+                            <label class="fw-bold" for="img">Select image3:</label>
+                            <input type="file" id="2" onchange="man(2)"  accept="image/*" required>
+                            <label class="fw-bold" for="img">Select image4:</label>
+                            <input type="file" onchange="man(3)" id="3"  accept="image/*" required>
+                          </div>
+                          <button id="sub" class="btn btn-primary btn-lg btn-block">submit</button>
+                        </div>
+                          {% endif %}
+                        </form>
+                     <hr class="my-4">
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </section>
+         <script>
+            function da(){
+              var s=document.getElementById("cars").value
+              console.log(s=="1")
+               switch (s) {
+                case "1":
+                  document.getElementById("opt1").innerHTML="Shirt"
+                  document.getElementById("opt2").innerHTML="pant"
+                  document.getElementById("opt3").innerHTML="T-shirt"
+                  document.getElementById("opt1").value="Shirt"
+                  document.getElementById("opt2").value="pants"
+                  document.getElementById("opt3").value="T-shirt"
+                  break;
+                case "2":
+                document.getElementById("opt1").innerHTML="Saree"
+                document.getElementById("opt2").innerHTML="Churidar"
+                document.getElementById("opt3").innerHTML="Top-jeans"
+                document.getElementById("opt1").value="Saree"
+                document.getElementById("opt2").value="Churidar"
+                document.getElementById("opt3").value="Top-jeans"
+                  break;
+                case "3":
+                document.getElementById("opt1").innerHTML="Pant"
+                document.getElementById("opt2").innerHTML="shirt"
+                document.getElementById("opt3").innerHTML="Skirt"
+                document.getElementById("opt1").value="Pant"
+                document.getElementById("opt2").value="shirt"
+                document.getElementById("opt3").value="Skirt"
+                  break;
+                default:
+                document.getElementById("opt1").innerHTML="No-subcategory found"
+                document.getElementById("opt1").value=""
+                document.getElementById("opt2").innerHTML=""
+                document.getElementById("opt3").innerHTML=""
+                document.getElementById("opt2").value=""
+                document.getElementById("opt3").value=""
+              } 
+
+            }
+             
+         </script>
+       {% endblock  %}

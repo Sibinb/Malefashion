@@ -1,0 +1,63 @@
+{% extends 'admin_html.html' %}
+       {% block navbar %}
+       <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+        <div class="position-fixed">
+          <div class="list-group list-group-flush mx-3  w-45" style="margin-top: 42px;" >
+            <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple mt-3  " style="text-decoration:none ;" aria-current="true">
+              <i class="fa-sharp fa-solid fa-house"></i> <span >Dashboard</span>
+            </a>
+            <a href="users" class="list-group-item list-group-item-action py-2 ripple  mt-3  ">
+              <i class="fa-sharp fa-solid fa-user"></i> <span >Users</span>
+            </a>
+            <a href="product" class="list-group-item list-group-item-action py-2 ripple mt-3 active">
+              <i class="fa-solid  fa-cart-shopping"></i> <span>Products</span></a>
+              <a href="oders" class="list-group-item list-group-item-action py-2 ripple mt-3">
+                <i class="fa-solid fa-bolt"></i> <span>Oders</span></a>
+                <a href="coupon!0" class="list-group-item list-group-item-action py-2 ripple mt-3">
+                  <i class="fa-solid fa-bolt"></i> <span>Coupon</span></a>
+          </div>
+        </div>
+      </nav>
+       {% endblock navbar %}
+        {% block content %}
+          
+        <main id="main"  class="w-75" >
+            <div class="container pt-4 text-info d-flex justify-content-between">
+              <h3 style="margin: 10px 0px 30px 40px;">Products</h3>
+              <a href="add_product"><button class="btn btn-secondary">Add product</button></a>
+            </div>
+            <table id="example" class="display border border-dark p-3" style="width:100%">
+                <thead >
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Subcategory</th>
+                    <th scope="col">Image</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for product  in products  %}
+                      <tr>
+                        <th scope="row"><h5>{{product.id}}</h5></th>
+                        <td><h5> {{product.product_name}} </h5></td>
+                        <td><h5> {{product.product_price}}/-Rs </h5></td>
+                        <td><h5> {{product.category_id.category_name}} </h5></td>
+                        <td><h5> {{product.subcategory}} </h5></td>
+                        <td><img style="height:80px;" src="media/{{product.product_image1}}"></td>
+                        <td><button type="button" class="btn btn-primary"><a class="text-light" href="edit!{{product.id}}" style="text-decoration:none;">Edit</a></button></td>
+                        <td><button  type="button" class="btn btn-danger"onclick="return confirm('Do you want to delete {{product.product_name}} ?')"><a   class="text-light" href="dele!{{product.id}}" style="text-decoration:none;">Delete</a></button></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+          </main>
+          <script>
+            $(document).ready( function () {
+              $('#myTable').DataTable();
+          } );
+          </script>
+        {% endblock content %}

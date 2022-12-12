@@ -1,0 +1,107 @@
+#count{
+   padding: 0px;
+   margin: 0px;
+   font-size: 11px;
+   font-weight: 500;
+   position: absolute;
+   top: 2px;
+   left: 22px;
+   
+}
+#c{
+  display: none;
+}
+
+.show{
+   margin-left: 20px;
+  }
+  #a_tag{
+   margin-left: 40px;
+  }
+  #icon_tag{ 
+   margin-left: 48px;
+  }
+  .acc{
+   margin-right: 35px;
+  }
+ .wid{
+   margin: 0px 58px 0px 63px;
+ }
+  @media (max-width:990px) {
+   #a_tag{
+     margin-left: 0px;
+    }
+   .acc{
+     display: none;
+   }
+   .wid{
+     margin: 0px ;
+   }
+   #icon_tag{
+      display: none;
+     }
+    #c{
+      display:inline-flex;
+    }
+    #add-cart-btn{
+      width: 89px;
+      font-size: 9px;
+    }
+  }
+
+
+  /* User profile css */
+
+  body {
+    background: rgb(237, 233, 239)
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.confirm-cls{
+  display: none;
+}
+.offer{
+  color: gray;
+  font-size: 15px;
+  text-decoration: line-through;
+}

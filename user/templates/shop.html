@@ -1,0 +1,235 @@
+{% extends 'html.html' %}
+{% block content %}
+
+{% load static %}
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shop</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <span>Shop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+                            <form action="#">
+                            </form>
+                        </div>
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__categories">
+                                                <ul class="nice-scroll">
+                                                    {% for stat in cat_stats  %}
+                                                    <li><a href="s!c!{{stat.category_name}}">{{stat.category_name}} ({{stat.tot_num}})</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                                <ul>
+                                                    {% for stat in brand_stats  %}
+                                                    <li><a href="s!b!{{stat.Name}}">{{stat.Name}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li><a href="s!p!0">&#8377;0 - &#8377;500</a></li>
+                                                    <li><a href="s!p!500">&#8377;500 - &#8377;1000</a></li>
+                                                    <li><a href="s!p!1000">&#8377;1000 - &#8377;1500</a></li>
+                                                    <li><a href="s!p!1500">&#8377;1500 - &#8377;2000</a></li>
+                                                    <li><a href="s!p!2000">&#8377;2000 - &#8377;2500</a></li>
+                                                    <li><a href="s!p!2500">&#8377;2500+</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="shop__product__option">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__left">
+                                    <p>Showing {{products.number}}–{{products.paginator.num_pages}} of {{len}} results</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__right">
+                                    <p>Sort by Price:</p>
+                                    <select onchange="sort()"  id="sort_val">
+                                        <option value="1">Low To High</option></a>
+                                        <option  value="0">0 - 500</option></a>
+                                        <option  value="1001">1000+</option></a>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5 class=" d-block justify-content-center text-danger">{{msg}}</h5>
+                    {% for product in products  %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <a href="/details!{{product.id}}"><img src="media/{{product.product_image1}}" height="270" width="270" alt=""></a>
+                            <span class="label">New</span>
+                            <ul class="product__hover">
+                                {% if guest_user %}
+                                <a  href="/login" ><i class="fa fa-heart-o" style="font-size:24px;"></i></a>
+                                {% else %}
+                                {% if product.pk in item %}
+                                <a id="{{product.id}}heart" onclick="add_wishlist({{product.id}})" ><i class="fa fa-heart" style=" color:red;font-size:24px;"></i></a>
+                             {% else %}
+                                   <a id="{{product.id}}heart" onclick="add_wishlist({{product.id}})" ><i class="fa fa-heart-o" style="font-size:24px;"></i></a>
+                             {% endif %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>{{product.product_name}}</h6>
+                            <a onclick="addcart({{product.id}},0)" class="add-cart">+ Add To Cart</a>
+                            <div class="rating">
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>{{product.product_price}}Rs</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="row">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="product__pagination">
+                {% if products.previous_page_number > 1 %}
+                <a href="?page=1">1</a>
+                {% endif %}
+                {% if products.has_previous %}
+                <a href="?page={{products.previous_page_number}}">{{products.previous_page_number}}</a>
+                {% endif %}
+                <a class="active" href="?page={{products.number}}">{{products.number}}</a>
+                {% if products.has_next %}
+                <a href="?page={{products.next_page_number}}">{{products.next_page_number}}</a>
+                {% endif %}
+
+                {% if products.next_page_number != products.paginator.num_pages %}
+                <span>...</span>
+                <a href="?page={{products.paginator.num_pages}}">{{products.paginator.num_pages}}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- Shop Section End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
+                        </div>
+                        <p>The customer is at the heart of our unique business model, which includes design.</p>
+                        <a href="#"><img src="{% static 'img/payment.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Clothing Store</a></li>
+                            <li><a href="#">Trending Shoes</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivary</a></li>
+                            <li><a href="#">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    {% endblock content %}

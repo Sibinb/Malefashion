@@ -1,0 +1,265 @@
+{% extends 'html.html' %}
+{% block content %}
+{% load static %}
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Check Out</h4>
+                    <div class="breadcrumb__links">
+                        <a href="./index.html">Home</a>
+                        <a href="./shop.html">Shop</a>
+                        <span>Check Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+      <div class="container">
+        <div class="checkout__form">
+            <div style=" display: flex; margin-bottom: 10px;">
+                <a href="checkout!1"><button class="btn btn-dark"> Add New address</button></a>
+            </div>
+            {% if adress %}
+            <form id="myForm_12" action="placeorder!1" method="post">
+                {% csrf_token %}
+            {% else %}
+            <form id="myForm_12" action="placeorder!0" method="post">
+                {% csrf_token %}
+            {% endif %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                    {% if adress %}
+                        <div class="cart__discount justify-content-between">
+                            <form action="#">
+                            </form>
+                        </div>
+                        <h3 class="h3">Choose Your Address</h3>
+                <div style="overflow-x:auto;">
+                <table class="table table-striped col-md-6">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobileno</th>
+                        <th scope="col">Postcode</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">City</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in adress  %}
+                      <tr>
+                        <th scope="row"><input value="{{i.pk}}" type="radio" id="valu" name="address" required></th>
+                        <td>{{i.Name}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.mobileno}}</td>
+                        <td>{{i.Postcode}}</td>
+                        <td>{{i.Address}}</td>
+                        <td>{{i.City}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                  {% else %}
+                            <div class="d-flex ">
+                            <div class=" cart__discount ">
+                                <form action="#">
+                                </form>
+                            </div>
+                        </div>
+                        <h6 class="checkout__title">Billing Details</h6>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Fist Name<span>*</span></p>
+                                    <input name="name" class="text-dark" type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Last Name<span>*</span></p>
+                                    <input name="lastname" class="text-dark" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Country<span>*</span></p>
+                            <input name="country" class="text-dark" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address<span>*</span></p>
+                            <input name="address" class="text-dark" type="text" placeholder="Street Address" class="checkout__input__add">
+                        </div>
+                        <div class="checkout__input">
+                            <p>City<span>*</span></p>
+                            <input name="city" class="text-dark" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>State<span>*</span></p>
+                            <input name="state" class="text-dark" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Postcode<span>*</span></p>
+                            <input name="postcode" class="text-dark" type="text">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Phone<span>*</span></p>
+                                    <input name="phone" class="text-dark" type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Email<span>*</span></p>
+                                    <input name="email" class="text-dark" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                         <div class="checkout__input__checkbox">
+                            {% comment %} <label for="diff-acc">
+                                Note about your order, e.g, special noe for delivery
+                                <input type="checkbox" id="diff-acc">
+                                <span class="checkmark"></span>
+                            </label> {% endcomment %}
+                        </div>
+                        {% comment %} <div class="checkout__input">
+                            <p>Order notes<span>*</span></p>
+                            <input type="text"
+                            placeholder="Notes about your order, e.g. special notes for delivery.">
+                        </div> {% endcomment %}
+                </div>
+                    <div class="col-lg-4 col-md-6">
+                            <div class="  cart__discount "> 
+                                <h6>Discount codes</h6>
+                                <form action="">
+                                    <input id="code" class="text-dark" name="coup" type="text" placeholder="Coupon code">
+                                    <button onclick="coupon(1)" class="btn-dark" type="button">Apply</button>
+                                </form>
+                            </div>
+                            <div class="  cart__discount ">
+                                <h6>Available Coupons</h6>
+                                <p class="text-danger" id="error"></p>
+                                {% if obj %}
+                                <form> 
+                                    <select onchange="coupon(0)" name="couponid" id="couponid">
+                                        {% for key,value in obj.items %}
+                                        <option class="text-secondary" value="{{key}}">{{value}}</option>
+                                        {% endfor %}
+                                    </select>
+                                     <input style="visibility:hidden ;" type="checkbox">
+                                </form>
+                                {% else %}
+                                <p class="text-secondary">No Coupons available</p>
+                                {% endif %}
+                            </div>
+                        <div class="checkout__order">
+                            <h4 class="order__title">Your order</h4>
+                            <div class="checkout__order__products">Product <span>Price</span></div>
+                            <ul class="checkout__total__products">
+                                {% for list in lists %}
+                              <li>{{list.cart_prd_quantity}} x {{list.cart_prd_id.product_name}}<span>&#8377;{{list.cart_prd_id.product_price}}</span></li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="checkout__total__all">
+                                <li>Subtotal <span></span></li>
+                                <li id="cop_price" ></li>
+                                <li id="tot" >Total <span>&#8377;{{total}}</span></li>
+                            </ul>
+                            <div class="checkout__input__checkbox">
+                                <input value="online payment"  name="payment-method" type="radio" id="p" required>
+                                <span>Razorpay</span>
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <input value="paypal"  name="payment-method" type="radio" id="p" >
+                                Paypal
+                            </div>
+                           <div class="checkout__input__checkbox"> 
+                                <input value="COD"  name="payment-method" type="radio" id="p">
+                                COD
+                                    
+                            {% if total == 0 %}
+                            <h4  class="site-btn">ADD something to cart</h4>
+                            {% else %}
+                            <button type="button"  id="cash" class="site-btn">PLACE ORDER</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                    </div>
+                    <p>The customer is at the heart of our unique business model, which includes design.</p>
+                    <a href="#"><img src="img/payment.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Clothing Store</a></li>
+                        <li><a href="#">Trending Shoes</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Delivary</a></li>
+                        <li><a href="#">Return & Exchanges</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                <div class="footer__widget">
+                    <h6>NewLetter</h6>
+                    <div class="footer__newslatter">
+                        <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                        <form action="#">
+                            <input type="text" placeholder="Your email">
+                            <button type="submit"><span class="icon_mail_alt"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="footer__copyright__text">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+{% endblock content%}

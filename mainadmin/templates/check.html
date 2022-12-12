@@ -1,0 +1,32 @@
+{% extends 'admin_html.html' %}
+       {% block navbar %}
+       <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+        <div class="position-fixed">
+          <div class="list-group list-group-flush mx-3  w-45" style="margin-top: 42px;" >
+            <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple mt-3 active " style="text-decoration:none ;" aria-current="true">
+              <i class="fa-sharp fa-solid fa-house"></i> <span >Dashboard</span>
+            </a>
+            <a href="users" class="list-group-item list-group-item-action py-2 ripple  mt-3  ">
+              <i class="fa-sharp fa-solid fa-user"></i> <span >Users</span>
+            </a>
+            <a href="product" class="list-group-item list-group-item-action py-2 ripple mt-3 ">
+              <i class="fa-solid  fa-cart-shopping"></i> <span>Products</span></a>
+          </div>
+        </div>
+      </nav>
+       {% endblock navbar %}
+        {% block content %}
+       <section class="vh-100 mt-5">
+           <div class="container py-5 h-100">
+             <div class="row d-flex justify-content-center align-items-center h-100">
+               <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                 <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                   <div class="card-body p-5 text-center">
+                  
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </section>
+{% endblock content %}
