@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-va6&-0mi25g8zq%+#)7n!f&5*l(872iti8ea6dufmcmle@9ww$
 DEBUG =True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,8 +81,8 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'fashion',
 		'USER': 'root',
-		'PASSWORD': 'sibin',
-		'HOST':'127.0.0.1',
+		'PASSWORD': 'sibin@S25',
+		'HOST':'localhost',
 	}
 }
 
