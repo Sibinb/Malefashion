@@ -47,7 +47,7 @@
                         <td><h5> {{product.product_price}}/-Rs </h5></td>
                         <td><h5> {{product.category_id.category_name}} </h5></td>
                         <td><h5> {{product.subcategory}} </h5></td>
-                        <td><img style="height:80px;" src="media/{{product.product_image1}}"></td>
+                        <td><img style="height:80px;" src="/media/{{product.product_image1}}"></td>
                         <td><button type="button" class="btn btn-primary"><a class="text-light" href="edit!{{product.id}}" style="text-decoration:none;">Edit</a></button></td>
                         <td><button  type="button" class="btn btn-danger"onclick="return confirm('Do you want to delete {{product.product_name}} ?')"><a   class="text-light" href="dele!{{product.id}}" style="text-decoration:none;">Delete</a></button></td>
                       </tr>
