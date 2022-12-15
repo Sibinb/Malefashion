@@ -60,7 +60,7 @@
             <div class="collapse navbar-collapse"  id="navbarText">
               <ul class="navbar-nav mr-auto ">
                 <li class="nav-item active">
-                    <a class="nav-link des" id="a_tag" href="/"> <h5>Home </h5><span class="sr-only">(current)</span></a>
+                    <a class="nav-link des" id="a_tag" href="/"><h5>Home </h5><span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="a_tag" href="shop"><h5>Shop</h5></a>
@@ -116,6 +116,13 @@
                     <a class="nav-link show " style="position: relative;" id="icon_tag" href="/cart"><span class=" text-danger font-weight-bold" id="count">{{request.session.value}}</span><img height="30px" src="{% static 'img/icon/cart.png' %}" ></a>
                     {% endif %}
                 </li>
+              </li>
+              {% if guest_user %}
+              <a></a>
+                  {% else %}
+                  <a class="nav-link" id="a_tag" href="/logout"><h5>Logout</h5></a>
+                  {% endif %}
+              </li>
               </ul>
                   <div class="dropdown acc">
                       {% if guest_user %}
