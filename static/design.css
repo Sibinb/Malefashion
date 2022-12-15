@@ -1,3 +1,9 @@
+.first-img{
+  background-image: url('/static/img/hero/hero-1.jpg') !important;
+}
+.secnd-img{
+  background-image: url('/static/img/hero/hero-2.jpg') !important;
+}
 #count{
    padding: 0px;
    margin: 0px;
@@ -105,3 +111,10 @@
   font-size: 15px;
   text-decoration: line-through;
 }
+@media (max-width:430px){
+  .first-img{
+    background-image: url('/static/img/hero/hero-3.jpg') !important;
+  }
+  .secnd-img{
+    background-image: url('/static/img/hero/hero-4.jpg') !important;
+  }
