@@ -78,7 +78,7 @@ def register(request):
 
     return render(request, 'user_registration.html')
 
-
+@cache_control(no_cache=True, must_revaliddate=True, no_store=True)
 def otp(request):
     phone = request.session['phone']
     if request.method == 'POST':
@@ -400,7 +400,7 @@ def checkout(request, id):
         return render(request, 'checkout.html', {"lists": lists, "total": sum1, "adress": adress, "user": user, "obj": obj})
     return redirect('login')
 
-
+@cache_control(no_cache=True, must_revaliddate=True, no_store=True)
 def Placeorder(request, id):
     userid = request.session['user_id']
     _id = int(id)
@@ -650,7 +650,7 @@ def test(request):
 def confirm(request):
     return render(request, 'confirm.html')
 
-
+@cache_control(no_cache=True, must_revaliddate=True, no_store=True)
 def apply_coupon(request):
     id = int(request.GET['id'])
     userid = request.session['user_id']
@@ -752,9 +752,11 @@ def searched(request):
 
 @cache_control(no_cache=True, must_revaliddate=True, no_store=True)
 def remove_frm_wishlist(request):
-    _id = request.GET['id']
-    userid = request.session['user_id']
-    product = Wishlist.objects.filter(
-        user_id=userid, wishlist_prd_id_id=_id).get()
-    product.delete()
-    return HttpResponse("wishlist")
+    if 'islogedin' in request.session:
+        _id = request.GET['id']
+        userid = request.session['user_id']
+        product = Wishlist.objects.filter(
+            user_id=userid, wishlist_prd_id_id=_id).get()
+        product.delete()
+        return HttpResponse("wishlist")
+    return redirect('login')
