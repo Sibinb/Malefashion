@@ -68,9 +68,10 @@ def register(request):
             user.email = email
             user.mobileno = mobile
             user.password = eny_password
-            helpers.user1 = user
+            helpers.user1[f"{email}"]=user
             request.session['phone'] = mobile
-            helpers.otp = helpers.sendotp(mobile)
+            request.session['email'] = email
+            request.session['otp'] = helpers.sendotp(mobile)
             return redirect('otp')
         else:
             msg = "Passwords are not matching.Try again"
@@ -81,14 +82,17 @@ def register(request):
 @cache_control(no_cache=True, must_revaliddate=True, no_store=True)
 def otp(request):
     phone = request.session['phone']
+    email=request.session['email'] 
     if request.method == 'POST':
         get_otp = request.POST['otp']
-        otp1 = str(helpers.otp)
+        otp1 = str(request.session['otp'])
         if get_otp == otp1:
-            helpers.user1.save()
+            userdata=helpers.user1[f"{email}"]
+            userdata.save()
+            request.session['otp']=None
             msg = "Registration succsesfully completed..."
-            helpers.user1 = {}
-            helpers.otp = 0
+            helpers.user1.pop(f"{email}")
+            print(helpers.user1)
             return render(request, 'user_login.html', {"msg": msg})
         else:
             msg = "otp is incorrect"
