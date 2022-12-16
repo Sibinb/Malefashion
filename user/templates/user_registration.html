@@ -13,10 +13,22 @@
       #h{
         color: red;
       }
+      body{
+        overflow-y: hidden;
+        background-image:url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80) ;  background-repeat: no-repeat; background-size: cover; 
+      }
+      @media (max-width:775px){
+        body{
+          overflow-y: auto;
+          background-image: none;
+        }
+
+      }
     </style>
+
   </head>
-  <body style="overflow-y:hidden ;">
-    <section class="vh-100" style="background-image:url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80) ;  background-repeat: no-repeat; background-size: cover;">
+  <body>
+    <section class="vh-100 ">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col col-xl-10">
@@ -28,44 +40,41 @@
                         {% csrf_token %}
                         <div class="d-flex align-items-center mb-3 pb-1 text-center  ">
                           <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                          <span  class="h1 fw-bold mb-0">Sign-up</span>
+                          <span  class="h1 fw-bold mb-0">Sign-up To <a href="/" style="text-decoration: none; color: brown ;">Malefashion</a> </span>
                         </div>
-                        <h3 class="fw-normal mb-3 pb-3 fw-bold" style="letter-spacing: 1px;">Create a new account</h3>
                         <h5 class=" mb-3 pb-3 fw-normal text-danger" style="letter-spacing: 1px;">{{msg}}</h4>
 
-                        <div class="form-outline mb-4 d-flex">
-                          <div class="form-outline col-md-6 mb-4 " style="margin:0px 0px 0px 0px" >
+                        <div class=" row form-outline mb-4 d-flex">
+                          <div class="form-outline col-md-6 col-12 mb-4 justify-content-center"  >
                             <input placeholder="Name" onchange="na(this)" name="name" type="text" id="form2Example27" class="form-control form-control-lg" />
                             <span id="name-error" class="text-danger " ></span>
                           </div>
-                          <div class="form-outline col-md-6 mb-4 mr-5" style="margin:0px 40px 0px 16px" >
+                          <div class="form-outline col-md-6 col-12 mb-4 " >
                             <input type="text" onchange="una(this)" name="username" placeholder="Username" id="form2Example27" class="form-control form-control-lg" />
                             <span id="usrname-error" class="text-danger f" ></span>
                           </div>
-                          
                         </div>
 
-                        <div class="form-outline mb-4 d-flex">
-                          <div class="form-outline col-md-6 mb-4 " style="margin:0px 0px 0px 0px" >
+                        <div class=" row form-outline mb-4 d-flex justify-content-center">
+                          <div class="form-outline col-12 col-md-6 mb-4 "  >
                             <input type="email" onchange="em(this)" name="email" placeholder="E-mail" id="form2Example27" class="form-control form-control-lg name" />
                             <span id="email-error" class="text-danger " ></span>
                           </div>
-                          <div class="form-outline col-md-6 mb-4 mr-5" style="margin:0px 40px 0px 16px" >
+                          <div class=" row form-outline  col-12 col-md-6 mb-4 "  >
                             <input  type="number" onchange="num(this)" name="mobile" placeholder="Phone number" id="form2Example27" class="form-control form-control-lg" />
                             <span id="number-error" class="text-danger" ></span>
                           </div>
                         </div>
 
-                        <div class="form-outline mb-4 d-flex">
-                          <div class="form-outline col-md-6 mb-4 " style="margin:0px 0px 0px 0px" >
+                        <div class=" row form-outline mb-4 d-flex justify-content-center">
+                          <div class="form-outline col-md-6 col-12 mb-4 ">
                             <input type="password" name="password" placeholder="Password" id="pas1" class="form-control form-control-lg" />
                             <span id="pas1-error" class="text-danger"></span>
                           </div>
-                          <div class="form-outline col-md-6 mb-4 mr-5" style="margin:0px 40px 0px 16px" >
+                          <div class="form-outline col-md-6 col-12 mb-4 align-items-center"  >
                             <input  type="password" name="confirm" placeholder="Confirm password" id="pas2" class="form-control form-control-lg" />
                           </div>
                         </div>
-
                         <div class="pt-1 mb-4">
                           <button class="btn btn-dark btn-lg btn-block" id="validate">Signup</button>
                         </div>
