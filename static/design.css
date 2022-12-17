@@ -34,6 +34,9 @@
    margin: 0px 58px 0px 63px;
  }
   @media (max-width:990px) {
+    #log-out{
+      display: block;
+    }
    #a_tag{
      margin-left: 0px;
     }
@@ -106,6 +109,9 @@
 .confirm-cls{
   display: none;
 }
+#log-out{
+  display: none;
+}
 .offer{
   color: gray;
   font-size: 15px;
@@ -118,3 +124,4 @@
   .secnd-img{
     background-image: url('/static/img/hero/hero-4.jpg') !important;
   }
+}
