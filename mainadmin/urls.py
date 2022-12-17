@@ -20,7 +20,8 @@ urlpatterns = [
     path('change-status',views.change_status,name="change_status"),
     path('order_det!<id>',views.admin_orders_details,name="admin_orders_details"),
     path('coupon!<id>',views.coupon,name="coupon"),
-    path('category_add',views.add_category,name="category-add")
+    path('category_add',views.add_category,name="category-add"),
+    path('salesreport',views.admin_sales,name="sales")
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
