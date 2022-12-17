@@ -6,6 +6,7 @@ import uuid
 import os
 from django.db.models import Sum
 from django.views.decorators.csrf import csrf_exempt
+from user.helpers import Sales
 
 def admin(request):
     return redirect('admin_home')
@@ -258,3 +259,36 @@ def add_category(request):
         msg="This category is successfully added"
         return render(request,'category_add.html',{"msg1":msg})
     return render(request,'category_add.html')
+
+
+def admin_sales(request):
+    try:
+        id=int(request.GET['id'])
+    except:
+        id=0
+    salesreport=[]
+    mostSell={}
+    product=ProductInfo.objects.all()
+    for i in product:
+        totprice=Orderdetails.objects.filter(order_prd_name=i.product_name).all().aggregate((Sum('order_prd_price')))
+        totqnty=Orderdetails.objects.filter(order_prd_name=i.product_name).all().aggregate((Sum('order_prd_quantity')))
+        sold=Orderdetails.objects.filter(order_prd_name=i.product_name).all().count()
+        mostSell[i.pk]=int(sold)
+        obj=Sales(i.product_name,totqnty["order_prd_quantity__sum"],i.product_price,totprice["order_prd_price__sum"],i.product_image1)
+        salesreport.append(obj)
+    if id == 1 :
+        odr=Orderdetails.objects.all().aggregate((Sum('order_prd_quantity')))
+        totpr=Orderdetails.objects.all().aggregate((Sum('order_prd_price')))
+        max_key=max(mostSell,key=mostSell.get)
+        min_key=min(mostSell,key=mostSell.get)
+        mstSoldprd=ProductInfo.objects.get(pk=max_key)
+        lstSoldprd=ProductInfo.objects.get(pk=min_key)
+        context={
+            "totoder":odr["order_prd_quantity__sum"],
+            "totprc":totpr["order_prd_price__sum"],
+            "mostsold":mstSoldprd.product_name,
+            "leastsold":lstSoldprd.product_name,
+            
+        }
+        return render(request,'summary.html',context)
+    return render(request,'salesreport.html',{'products':salesreport})

@@ -10,7 +10,7 @@
           <i class="fa-solid fa-bolt"></i> <span>Oders</span></a>
           <a href="coupon!0" class="list-group-item list-group-item-action py-2 ripple mt-3">
             <i class="fa-solid fa-bolt"></i> <span>Coupon</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple mt-3">
+            <a href="salesreport" class="list-group-item list-group-item-action py-2 ripple mt-3">
               <i class="fa-sharp fa-solid fa-flag"></i> <span>sales Report</span></a>
       </div>
     </div>
@@ -19,43 +19,28 @@
 {% block content %}
   <main id="main" class="w-75">
     <div class="container pt-4 text-info d-flex justify-content-between">
-      <h3 style="margin: 10px 0px 30px 40px;">ORDERS</h3>
+      <h3 style="margin: 10px 0px 30px 40px;">SALES REPORT</h3>
+      <a href="salesreport?id=1"><button class="btn btn-secondary h-50">Summary</button></a>
     </div>
     <table id="example" class="display border border-dark p-3" style="width:100%">
       <thead>
         <tr>
-          <th scope="col">OrderId</th>
-          <th scope="col">UserId</th>
-          <th scope="col">Name</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Sold Quatity</th>
+          <th scope="col">Price</th>
           <th scope="col">Tot-Price</th>
-          <th scope="col">Quantity</th>
           <th scope="col">Image</th>
-          <th scope="col">Date</th>
-          <th scope="col">Change Status</th>
         </tr>
       </thead>
       <tbody>
         {% for product in products %}
           <tr>
-            <td>{{ product.ord_id }}</td>
-            <th scope="row">{{ product.user_id }}</th>
-            <td><a style="text-decoration:none; color: black;" href="order_det!{{ product.pk }}">{{ product.order_prd_name }}</a></td>
-            <td>{{ product.order_prd_price }}/-Rs</td>
-            <td>{{ product.order_prd_quantity }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.soldqn }}</td>
+            <td>{{ product.price }}/-Rs</td>
+            <td>{{ product.totprice}}/-Rs</td>
             <td>
-              <img style="height:80px;" src="/media/{{ product.order_prd_image }}" />
-            </td>
-            <td>
-              <span>{{ product.date }}</span>
-            </td>
-            <td>
-              <select onchange="chstatus({{ product.pk }})" name="status" id="{{ product.pk }}status">
-                <option>{{ product.status }}</option>
-                <option>Placed</option>
-                <option>Shipping</option>
-                <option>Delivered</option>
-                <option>Cancelled</option>
-              </select>
+              <img style="height:80px;" src="/media/{{ product.img }}" />
             </td>
           </tr>
         {% endfor %}
