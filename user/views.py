@@ -377,7 +377,7 @@ def add_to_wishlist(request):
 
 
 @cache_control(no_cache=True, must_revaliddate=True, no_store=True)
-def checkout(request, id):
+def checkout(request, value):
     if 'islogedin' in request.session:
         userid = request.session['user_id']
         user = UserInfo.objects.filter(id=userid).get()
@@ -398,8 +398,7 @@ def checkout(request, id):
         sum1 = ord1["cart_total_price__sum"]
         if sum1 is None:
             sum1 = 0
-        ido = int(id)
-        if ido == 1:
+        if int(value) == 1:
             adress = None
         return render(request, 'checkout.html', {"lists": lists, "total": sum1, "adress": adress, "user": user, "obj": obj})
     return redirect('login')
