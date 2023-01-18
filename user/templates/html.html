@@ -52,7 +52,7 @@
 </div>
     {% endif %}
     <div class="wid"> 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-xl navbar-light bg-light">
             <img src="{% static 'img/logo.png' %} " alt="">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -98,7 +98,7 @@
                 <li class="nav-item mb-3">
                   <form class="d-flex" action="searched" method="post" role="search" id="a_tag">
                     {% csrf_token %}
-                    <input class="form-control me-2 " style="width: 200px;" name="search" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2 search "  name="search" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
                   </form>
                 </li>

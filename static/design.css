@@ -14,6 +14,9 @@
    left: 22px;
    
 }
+.search{
+  width: 200px;
+}
 #c{
   display: none;
 }
@@ -33,6 +36,11 @@
  .wid{
    margin: 0px 58px 0px 63px;
  }
+ @media (min-width:1200px) and (max-width:1315px) {
+  .search{
+    width: 9vw;
+  }
+}
   @media (max-width:990px) {
     #log-out{
       display: block;
