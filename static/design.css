@@ -1,135 +1,138 @@
-.first-img{
-  background-image: url('/static/img/hero/hero-1.jpg') !important;
+.first-img {
+  background-image: url("/static/img/hero/hero-1.jpg") !important;
 }
-.secnd-img{
-  background-image: url('/static/img/hero/hero-2.jpg') !important;
-}
-#count{
-   padding: 0px;
-   margin: 0px;
-   font-size: 11px;
-   font-weight: 500;
-   position: absolute;
-   top: 2px;
-   left: 22px;
-   
-}
-.search{
-  width: 200px;
-}
-#c{
-  display: none;
+.secnd-img {
+  background-image: url("/static/img/hero/hero-2.jpg") !important;
 }
 
-.show{
-   margin-left: 20px;
-  }
-  #a_tag{
-   margin-left: 40px;
-  }
-  #icon_tag{ 
-   margin-left: 35px;
-  }
-  .acc{
-   margin-right: 35px;
-  }
- .wid{
-   margin: 0px 58px 0px 63px;
- }
- @media (min-width:1200px) and (max-width:1315px) {
-  .search{
+#count {
+  padding: 0px;
+  margin: 0px;
+  font-size: 11px;
+  font-weight: 500;
+  position: absolute;
+  top: 2px;
+  left: 22px;
+}
+.search {
+  width: 200px;
+  margin-left: 1px;
+}
+#c {
+  display: none;
+}
+#log-out {
+  display: none;
+}
+.show {
+  margin-left: 20px;
+}
+#a_tag {
+  margin-left: 1.8rem
+}
+#icon_tag {
+  margin-left: 48px;
+}
+.acc {
+  margin-right: 35px;
+}
+.wid {
+  margin: 0px 58px 0px 63px;
+}
+@media (min-width: 1200px) and (max-width: 1315px) {
+  .search {
     width: 9vw;
   }
 }
-  @media (max-width:990px) {
-    #log-out{
-      display: block;
-    }
-   #a_tag{
-     margin-left: 0px;
-    }
-   .acc{
-     display: none;
-   }
-   .wid{
-     margin: 0px ;
-   }
-   #icon_tag{
-      display: none;
-     }
-    #c{
-      display:inline-flex;
-    }
-    #add-cart-btn{
-      width: 89px;
-      font-size: 9px;
-    }
+@media (max-width: 990px) {
+  #a_tag {
+    margin-left: 0px;
   }
+  #log-out {
+    display: block;
+  }
+  .acc {
+    display: none;
+  }
+  .wid {
+    margin: 0px;
+  }
+  #icon_tag {
+    display: none;
+  }
+  #c {
+    display: inline-flex;
+  }
+  #add-cart-btn {
+    width: 89px;
+    font-size: 9px;
+  }
+}
 
+/* User profile css */
 
-  /* User profile css */
-
-  body {
-    background: rgb(237, 233, 239)
+body {
+  background: rgb(237, 233, 239);
 }
 
 .form-control:focus {
-    box-shadow: none;
-    border-color: #BA68C8
+  box-shadow: none;
+  border-color: #ba68c8;
 }
 
 .profile-button {
-    background: rgb(99, 39, 120);
-    box-shadow: none;
-    border: none
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none;
 }
 
 .profile-button:hover {
-    background: #682773
+  background: #682773;
 }
 
 .profile-button:focus {
-    background: #682773;
-    box-shadow: none
+  background: #682773;
+  box-shadow: none;
 }
 
 .profile-button:active {
-    background: #682773;
-    box-shadow: none
+  background: #682773;
+  box-shadow: none;
 }
 
 .back:hover {
-    color: #682773;
-    cursor: pointer
+  color: #682773;
+  cursor: pointer;
 }
 
 .labels {
-    font-size: 11px
+  font-size: 11px;
 }
 
 .add-experience:hover {
-    background: #BA68C8;
-    color: #fff;
-    cursor: pointer;
-    border: solid 1px #BA68C8
+  background: #ba68c8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #ba68c8;
 }
 
-.confirm-cls{
+.confirm-cls {
   display: none;
 }
-#log-out{
-  display: none;
-}
-.offer{
+.offer {
   color: gray;
   font-size: 15px;
   text-decoration: line-through;
 }
-@media (max-width:430px){
-  .first-img{
-    background-image: url('/static/img/hero/hero-3.jpg') !important;
+
+@media (max-width: 430px) {
+  .first-img {
+    background-image: url("/static/img/hero/hero-3.jpg") !important;
   }
-  .secnd-img{
-    background-image: url('/static/img/hero/hero-4.jpg') !important;
+  .secnd-img {
+    background-image: url("/static/img/hero/hero-4.jpg") !important;
   }
+}
+.oders-txt {
+  color: #682773 !important;
 }
