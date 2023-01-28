@@ -72,9 +72,6 @@
                     <a class="nav-link " id="a_tag" href="cart"><h5>Cart <span id="c" class="bg-secondary text-light rounded p-1  ">{{request.session.value}}</span></h5></a>
                     {% endif %}
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="a_tag" href="#"><h5>Contacts</h5></a>
-                </li>
                 <li class="nav-item" id="c">
                   {% if guest_user %}
                   <a class="nav-link" id="a_tag" href="/login"><h5>Wishlist</h5></a>
@@ -98,7 +95,7 @@
                 <li class="nav-item mb-3">
                   <form class="d-flex" action="searched" method="post" role="search" id="a_tag">
                     {% csrf_token %}
-                    <input class="form-control me-2 search "  name="search" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2  search" name="search" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
                   </form>
                 </li>
@@ -116,17 +113,17 @@
                     <a class="nav-link show " style="position: relative;" id="icon_tag" href="/cart"><span class=" text-danger font-weight-bold" id="count">{{request.session.value}}</span><img height="30px" src="{% static 'img/icon/cart.png' %}" ></a>
                     {% endif %}
                 </li>
-              <li class="nav-item" id="c">
-                  {% if guest_user %}
-                   <a></a>
+              </li>
+              {% if guest_user %}
+              <a></a>
                   {% else %}
-                  <a class="nav-link"  href="/logout"><h5>Logout</h5></a>
+                  <a class="nav-link" id="log-out" href="/logout"><h5>Logout</h5></a>
                   {% endif %}
               </li>
               </ul>
                   <div class="dropdown acc">
                       {% if guest_user %}
-                      <button class="btn dropdown-toggle ml-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         account
                       </button>
                       <div class="dropdown-menu" style="min-width:10px;" aria-labelledby="dropdownMenuButton">
