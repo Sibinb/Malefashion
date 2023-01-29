@@ -1,3 +1,4 @@
+
 function addcart(proid, state) {
   $.ajax({
     url: "add_cart",
@@ -51,7 +52,7 @@ function remove_frm_cart(proid) {
   });
 }
 
-function count(num, proid, qunty) {
+function count(num, proid,qunty) {
   let display = document.getElementById(proid);
   let current_qunty = Number(display.innerHTML);
   if (current_qunty < 2 && num == -1) {
@@ -71,22 +72,29 @@ function count(num, proid, qunty) {
       },
     });
   } else {
+    if(current_qunty + num>qunty){
+      console.log(current_qunty + num,"val",qunty);
+      alert("Product is out of stock")
+      return 0
+    }else{
+    console.log("working");
     display.innerHTML = current_qunty + num;
     let value = display.innerHTML;
     $.ajax({
-      url: "quant_add",
-      type: "GET",
-      data: { id: proid, quant: value },
-      success: function (data) {
-        let tot_price = document.getElementById(proid + "qn");
-        tot_price.innerHTML = data.prodo_price;
-        let total_pr = document.getElementById("total_price");
-        total_pr.innerHTML = "&#8377;" + data.total_price;
-      },
-      error: function (err) {
-        alert(err);
-      },
-    });
+        url: "quant_add",
+        type: "GET",
+        data: { id: proid, quant: value },
+        success: function (data) {
+          let tot_price = document.getElementById(proid + "qn");
+          tot_price.innerHTML = data.prodo_price;
+          let total_pr = document.getElementById("total_price");
+          total_pr.innerHTML = "&#8377;" + data.total_price;
+        },
+        error: function (err) {
+          alert(err);
+        },
+      });
+    }
   }
 }
 

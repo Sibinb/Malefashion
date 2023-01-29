@@ -25,33 +25,28 @@
   {% endblock navbar  %}
         {% block content %}
         <main id="main"  class="w-75" >
-          <div class="container pt-4 text-info">
-            <h3 style="margin: 10px 0px 30px 40px;">Users Info</h3>
-          </div>
-          <table id="example" class="display border boder-info" style="width:100%">
-            <thead class="text-info">
+        <div class="container pt-4 text-info d-flex justify-content-between">
+          <h3 style="margin: 10px 0px 30px 40px;">Category</h3>
+          <a href="category_add"><button class="btn btn-secondary">Add Category</button></a>
+        </div>
+          <table id="example" class="display border boder-dark" style="width:100%">
+            <thead class="text-dark">
               <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Category Id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phonenumber</th>
+                <th scope="col">Total Products</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              {% for user in users  %}
+              {% for item in items %}
               <tr >
-                <th  scope="row">{{user.id}}</th>
-                <td >{{user.Name}}</td>
-                <td>{{user.username}}</td>
-                <td >{{user.email}}</td>
-                <td>{{user.mobileno}}</td>
-                {% if user.isblocked %}
-                <td ><a onclick="unblock({{user.id}})"><button class="btn btn-success h-10">unblock</button></a></td>
-                {% else %}
-                <td ><a onclick="block({{user.id}})"><button class="btn btn-danger h-10">Block</button></a></td>
-                {% endif %}
+                <th  scope="row">{{item.id}}</th>
+                <td >{{item.category_name}}</td>
+                <td >{{item.tot_num}}</td>
+                <td ><a href="categoryedit!{{item.id}}" ><button class="btn btn-info h-10">Edit</button></a></td>
+                <td ><a  href="categorydel!{{item.id}}" onclick="return confirm('Do you want to this category')"><button class="btn btn-danger h-10">Delete</button></a></td>
               </tr>
               {% endfor %}
             </tbody>

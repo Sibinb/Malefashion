@@ -96,7 +96,13 @@ def admin_products(request):
     else:
         return redirect('admin_login')
     
-    
+def category(request):
+    categorys=Category.objects.all()
+    context={
+        "items":categorys,
+    }
+    return render(request,'category_show.html',context)
+
 @csrf_exempt
 def admin_addproducts(request):
     if request.method=="POST":
@@ -165,7 +171,7 @@ def admin_editproducts(request,id):
     cat_items=Category.objects.all()  
     return render(request,'admin_editproducts.html',{"products":prod,"categry":cat_items})
     
-    
+
 def admin_deleteproducts(request,id):
     prod1=ProductInfo.objects.filter(id=id).get()
     cat=Category.objects.filter(pk=prod1.category_id_id).get()
@@ -292,3 +298,19 @@ def admin_sales(request):
         }
         return render(request,'summary.html',context)
     return render(request,'salesreport.html',{'products':salesreport})
+
+
+def category_del(request,id):
+    item=Category.objects.get(pk=id)
+    item.delete()
+    return redirect('category')
+
+def category_edit(request,id):
+    item=Category.objects.get(pk=id)
+    if request.method =="POST":
+        cat_name=request.POST['name']
+        item.category_name=cat_name
+        item.save()
+        return redirect('category')
+    value=item.category_name
+    return render(request,'category_edit.html',{"value":value})

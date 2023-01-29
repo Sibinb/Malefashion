@@ -71,9 +71,9 @@
                                 </td>
                                 <td class="quantity__item">
                                     <div class="quantity">
-                                            <button onclick="count(-1,{{product.cart_prd_id_id}})"  id="butn" >-</button>
+                                            <button onclick="count(-1,{{product.cart_prd_id_id}},{{product.cart_prd_id.stock}})"  id="butn" >-</button>
                                             <span id="{{product.cart_prd_id_id}}">{{product.cart_prd_quantity}}</span>
-                                            <button onclick="count(1,{{product.cart_prd_id_id}},{{product.cart_prd_quantity}})" id="butn">+</button>
+                                            <button onclick="count(1,{{product.cart_prd_id_id}},{{product.cart_prd_id.stock}})" id="butn">+</button>
                                          </div>
                                     </div>
                                 </td>

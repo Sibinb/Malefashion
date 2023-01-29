@@ -21,7 +21,9 @@ urlpatterns = [
     path('order_det!<id>',views.admin_orders_details,name="admin_orders_details"),
     path('coupon!<id>',views.coupon,name="coupon"),
     path('category_add',views.add_category,name="category-add"),
-    path('salesreport',views.admin_sales,name="sales")
-    
+    path('salesreport',views.admin_sales,name="sales"),
+    path('category',views.category,name="category"),
+    path('categorydel!<id>',views.category_del,name="category_delete"),
+    path('categoryedit!<id>',views.category_edit,name="category_delete")
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

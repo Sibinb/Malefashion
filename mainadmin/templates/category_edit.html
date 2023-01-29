@@ -30,12 +30,10 @@
               <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card shadow-2-strong" style="border-radius: 1rem;">
                   <div class="card-body p-5 text-center">
-                    <h4>ADD CATEGORY</h4>
+                    <h4>EDIT CATEGORY</h4>
                     <form action="" method="post">
                       {% csrf_token %}
-                      <h6 class="h6 text-danger">{{msg}}</h6>
-                      <h6 class="h6 text-success">{{msg1}}</h6>
-                    <input name='name' type="text" placeholder="Enter the Category" class="form-control form-control-md" required  />
+                    <input name='name' value={{value}} type="text" placeholder="Enter the Category" class="form-control form-control-md" required  />
                     <button type="submit" class="btn btn-info mt-3">submit</button>
                   </form>
                   </div>
