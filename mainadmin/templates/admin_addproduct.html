@@ -34,7 +34,7 @@
                       <h5 style="color:black;">{{m}}</h5>
                       {% if show %}
                         <div class="form-outline mb-4">
-                          <form action="add_product" method="post">
+                          <form action="" method="post">
                           {% csrf_token %}
                           <h5 class="h5">{{msg}}</h5>
                         <input name="name" type="text" placeholder="Enter the brand" class="form-control form-control-md" required/>
@@ -42,7 +42,7 @@
                       </form>
                       </div>
                        {% else %} 
-                    <form action="" id="image-form" method="post" enctype="multipart/form-data">
+                    <form action="add_product" id="image-form" method="post" enctype="multipart/form-data">
                      {% csrf_token %}
                      <div class="form-outline mb-4">
                        <input name="Product_Name" type="name" placeholder="Enter product name" id="typeEmailX-2" class="form-control form-control-md" required />
