@@ -51,6 +51,9 @@ def generateRazorpay(total,orderid):
     data=client.order.create(data=DATA)
     return data
 
+
+dat=""
+
 class Sales:
         def __init__(self,name,soldquantity,price,totprice,img):
             self.name=name
@@ -58,4 +61,3 @@ class Sales:
             self.price=price
             self.totprice=totprice
             self.img=img
-dat=""

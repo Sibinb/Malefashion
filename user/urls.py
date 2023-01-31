@@ -26,9 +26,13 @@ urlpatterns = [
     path('view-oders!<id>',views.view_oders,name="veiw_oders"),
     path('cancel-order',views.cancelorder,name="canceloders"),
     path('confirm',views.confirm,name="comfirm"),
-    path('profile',views.user_profile,name="pr0file"),
+    path('profile',views.user_profile,name="profile"),
     path('apply_cop',views.apply_coupon,name="apply_coupon"),
     path('return-order',views.returnorder,name="returnorder"),
     path('searched',views.searched,name="searched"),
-    path("remove_frm_wishlist",views.remove_frm_wishlist,name="remove_frm_wishlist")
+    path("remove_frm_wishlist",views.remove_frm_wishlist,name="remove_frm_wishlist"),
+    path("editaddres!<id>",views.edit_address,name="edit_address"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'user.views.error_404'
+handler500 = 'user.views.error_500'

@@ -69,9 +69,12 @@ def register(request):
             user.mobileno = mobile
             user.password = eny_password
             helpers.user1[f"{email}"]=user
+            print(request.session)
             request.session['phone'] = mobile
             request.session['email'] = email
-            request.session['otp'] = helpers.sendotp(mobile)
+            # request.session['otp'] = helpers.sendotp(mobile)
+            request.session['otp']="1000"
+            print("hello")
             return redirect('otp')
         else:
             msg = "Passwords are not matching.Try again"
@@ -119,7 +122,7 @@ def home(request):
 def user_profile(request):
     userid = request.session['user_id']
     user = UserInfo.objects.filter(id=userid).get()
-
+    addres=Adress.objects.filter(userid=userid)
     if request.method == "POST":
         if user.mobileno != int(request.POST['mobile']):
             if not helpers.send:
@@ -144,7 +147,7 @@ def user_profile(request):
         user.username = request.POST['username']
         user.save()
         return JsonResponse({"hello": "helo"})
-    return render(request, 'user_profile.html', {"user": user})
+    return render(request, 'user_profile.html', {"user": user,"address":addres})
 
 
 @cache_control(no_cache=True, must_revaliddate=True, no_store=True)
@@ -379,6 +382,7 @@ def add_to_wishlist(request):
 @cache_control(no_cache=True, must_revaliddate=True, no_store=True)
 def checkout(request, value):
     if 'islogedin' in request.session:
+        print("heollll-------------------------------",value)
         userid = request.session['user_id']
         user = UserInfo.objects.filter(id=userid).get()
         adress = Adress.objects.filter(userid=userid).all()
@@ -398,8 +402,10 @@ def checkout(request, value):
         sum1 = ord1["cart_total_price__sum"]
         if sum1 is None:
             sum1 = 0
+        print("----------------------------------",value == 1)
         if int(value) == 1:
             adress = None
+            print("enter")
         return render(request, 'checkout.html', {"lists": lists, "total": sum1, "adress": adress, "user": user, "obj": obj})
     return redirect('login')
 
@@ -763,3 +769,35 @@ def remove_frm_wishlist(request):
         product.delete()
         return HttpResponse("wishlist")
     return redirect('login')
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html', status=404)
+
+
+def edit_address(request,id):
+    id=int(id)
+    items=Adress.objects.filter(pk=id)
+    item=items[0]
+    print("hello")
+    if request.method=="POST":
+        print("HAi")
+        item.Name=request.POST['Name']
+        item.Address=request.POST['Address']
+        item.mobileno=request.POST['mobileno']
+        item.email=request.POST['email']
+        item.Postcode=request.POST['Postcode']
+        item.State=request.POST['State']
+        item.Country=request.POST['Country']
+        item.City=request.POST['City']
+        item.save()
+        return redirect('profile')
+    return render(request,'edit_address.html',{'item':item})
+
+
+def error_404(request, exception):
+        data = {}
+        return render(request,'404.html', data)
+    
+def error_500(request, *args, **argv):
+        data = {}
+        return render(request,'500.html', data)
