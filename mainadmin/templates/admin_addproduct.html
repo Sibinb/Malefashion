@@ -34,7 +34,7 @@
                       <h5 style="color:black;">{{m}}</h5>
                       {% if show %}
                         <div class="form-outline mb-4">
-                          <form action="" method="post">
+                          <form action="add_product" method="post">
                           {% csrf_token %}
                           <h5 class="h5">{{msg}}</h5>
                         <input name="name" type="text" placeholder="Enter the brand" class="form-control form-control-md" required/>
