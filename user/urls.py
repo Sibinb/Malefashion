@@ -32,6 +32,7 @@ urlpatterns = [
     path('searched',views.searched,name="searched"),
     path("remove_frm_wishlist",views.remove_frm_wishlist,name="remove_frm_wishlist"),
     path("editaddres!<id>",views.edit_address,name="edit_address"),
+    path("deladdres!<id>",views.delit_address,name="delete_address"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'user.views.error_404'

@@ -778,9 +778,7 @@ def edit_address(request,id):
     id=int(id)
     items=Adress.objects.filter(pk=id)
     item=items[0]
-    print("hello")
     if request.method=="POST":
-        print("HAi")
         item.Name=request.POST['Name']
         item.Address=request.POST['Address']
         item.mobileno=request.POST['mobileno']
@@ -793,7 +791,12 @@ def edit_address(request,id):
         return redirect('profile')
     return render(request,'edit_address.html',{'item':item})
 
-
+def delit_address(request,id):
+    id=int(id)
+    items=Adress.objects.filter(pk=id)
+    item=items[0]
+    item.delete()
+    return redirect('profile')
 def error_404(request, exception):
         data = {}
         return render(request,'404.html', data)

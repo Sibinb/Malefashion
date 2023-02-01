@@ -68,7 +68,7 @@ class Adress(models.Model):
 
 
 class Orderdetails(models.Model):
-    address = models.ForeignKey(Adress, on_delete=models.CASCADE)
+    address = models.ForeignKey(Adress,on_delete=models.CASCADE)
     order_prd_name = models.CharField(max_length=300)
     order_prd_price = models.BigIntegerField()
     order_prd_quantity = models.BigIntegerField()

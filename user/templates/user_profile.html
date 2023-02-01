@@ -38,7 +38,7 @@
                         <th class="p-1 border border-dark">ID</th>
                         <th class="p-1 border border-dark">Name</th>
                         <th class="p-1 border border-dark">Address</th>
-                    
+                        <th class="p-1"></th>
                         <th class="p-1"></th>
                     </thead>
                     <tbody>
@@ -47,7 +47,8 @@
                             <td class="p-1 border border-dark"> <span class="h6">{{item.pk}}</span></td>
                             <td class="p-1 border border-dark"> <span class="fs-5">{{item.Name}}</span></td>
                             <td class="p-1 border border-dark"> <span class="fs-5">{{item.Address}}</span></td>
-                            <td class="p-1 border border-dark"> <a href="editaddres!{{item.pk}}"><span  class="fs-5"><i class="fa-sharp fa-solid fa-pen-to-square text-danger"></i></span></a></td>
+                            <td class="p-1 border border-dark"> <a href="editaddres!{{item.pk}}"><span  class="fs-5"><i class="fa-sharp fa-solid fa-pen-to-square text-info"></i></span></a></td>
+                            <td class="p-1 border border-dark"> <a href="deladdres!{{item.pk}}" onclick="return confirm('Are u sure?')"><span  class="fs-5"><i class="fa-solid fa-trash text-danger"></i></span></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
