@@ -5,11 +5,13 @@
 .confirm_cls{
     display: none;
 }
-
+.position-fixed{
+    width: 11rem;
+}
 
 #main{
  margin-top: 58px;
-  margin-left: 23vh;
+ margin-left: 18vw;
 }
 ul {
     list-style-type: none;
