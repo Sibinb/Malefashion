@@ -69,12 +69,9 @@ def register(request):
             user.mobileno = mobile
             user.password = eny_password
             helpers.user1[f"{email}"]=user
-            print(request.session)
             request.session['phone'] = mobile
             request.session['email'] = email
-            # request.session['otp'] = helpers.sendotp(mobile)
-            request.session['otp']="1000"
-            print("hello")
+            request.session['otp'] = helpers.sendotp(mobile)
             return redirect('otp')
         else:
             msg = "Passwords are not matching.Try again"
