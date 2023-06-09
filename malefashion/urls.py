@@ -21,3 +21,4 @@ urlpatterns = [
     path('admin/',include("mainadmin.urls") ),
     path("",include("user.urls")),
 ]
+

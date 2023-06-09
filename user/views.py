@@ -10,6 +10,8 @@ from django.db.models import Sum
 import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
+import psutil
+
 
 
 @cache_control(no_cache=True, must_revaliddate=True, no_store=True)
@@ -71,7 +73,15 @@ def register(request):
             helpers.user1[f"{email}"]=user
             request.session['phone'] = mobile
             request.session['email'] = email
-            request.session['otp'] = helpers.sendotp(mobile)
+            interfaces = psutil.net_if_addrs()
+            for interface in interfaces:
+                addresses = interfaces[interface]
+                for address in addresses:
+                    if address.family == psutil.AF_LINK:
+                        mac_address= address.address
+            print(mac_address)
+            user.device_mac_id=mac_address
+            request.session['otp'] = 1000
             return redirect('otp')
         else:
             msg = "Passwords are not matching.Try again"

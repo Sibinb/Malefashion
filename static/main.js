@@ -134,7 +134,6 @@ function add_wishlist_from(proid) {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-
         Toast.fire({
           icon: "success",
           title: "Product added to wishlist",

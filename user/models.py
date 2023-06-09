@@ -11,6 +11,7 @@ class UserInfo(models.Model):
     password = models.TextField()
     isblocked = models.BooleanField(default=0)
     profile_pic = models.ImageField(default="", upload_to="img/")
+    device_mac_id= models.CharField(max_length=2000)
 
 
 class Coupon(models.Model):
